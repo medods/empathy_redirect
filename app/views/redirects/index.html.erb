@@ -1,0 +1,21 @@
+
+<h1>Redirects</h1>
+
+<table border="1" width="50%">
+	<thead>
+		<td>Domain</td>
+		<td>Url</td>
+	</thead>
+	<tbody>
+		<% @redirects.each do |r| %>
+			<tr>
+				<td>
+					<%= r.domain %>
+				</td>
+				<td>
+					<%= r.url %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
