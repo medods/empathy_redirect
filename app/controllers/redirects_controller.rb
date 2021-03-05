@@ -15,9 +15,11 @@ class RedirectsController < ApplicationController
 	def create
 		puts redirects_params
 		@redirect = Redirect.new(redirects_params)
-		if @redirect.save
+		if @redirect.valid?
+			@redirect.save
 			redirect_to root_path
 		else
+			flash.now[:messages] = @redirect.errors.full_messages[0]
 			render :new
 		end
 	end

@@ -3,6 +3,9 @@ class Redirect < ApplicationRecord
 	CONFIGS_PATH = "#{Rails.root}/nginx/configs/"
 	TEMPLATE_PATH = "#{Rails.root}/nginx/template.conf"
 
+	validates :url, presence: true, url: true
+	validates :domain, uniqueness: true, presence: true, :format => { :with => /\A([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}\Z/ }
+
 	after_create :create_nginx_config_file
 	after_destroy :delete_nginx_config_file
 

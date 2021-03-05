@@ -1,17 +1,22 @@
 <h1>New Redirect</h1>
 
+<% if flash[:messages] %>
+    <p class="text-warning"><%= flash[:messages] %></p>
+<% end %>
+
 <%= form_with model: @redirect do |form| %>
-  <div>
-    <%= form.label :domain %><br>
-    <%= form.text_field :domain %>
+  <div class="form-group">
+    <%= form.label :domain %>
+    <%= form.text_field :domain, class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :url %>
+    <%= form.text_field :url, class: 'form-control' %>
   </div>
 
   <div>
-    <%= form.label :url %><br>
-    <%= form.text_area :url %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Create", class: 'btn btn-primary' %>
+    <%= link_to "Back", {controller: "redirects", action: "index"}, class: "btn btn-primary" %>
   </div>
 <% end %>
