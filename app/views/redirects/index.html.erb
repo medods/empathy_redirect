@@ -1,26 +1,30 @@
 
-<h1>Redirects</h1>
-
-<table class='table'>
-	<thead>
-		<td>Domain</td>
-		<td>Url</td>
-		<td></td>
-	</thead>
-	<tbody>
-		<% @redirects.each do |redirect| %>
-			<tr>
-				<td>
-					<%= redirect.domain %>
-				</td>
-				<td>
-					<%= redirect.url %>
-				</td>
-				<td>
-					<%= link_to "Delete", redirect_path(redirect), method: :delete, data: { confirm: "Are you sure?" } %>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-<%= link_to "New Redirect", new_redirect_path %>
+<h1>Redirects </h1>
+<div class="pull-right">
+		<%= link_to "New Redirect", {controller: "redirects", action: "new"}, class: "btn btn-primary" %>
+</div>
+</br>
+<div>
+	<table class='table'>
+		<thead>
+			<td>Domain</td>
+			<td>Url</td>
+			<td></td>
+		</thead>
+		<tbody>
+			<% @redirects.each do |redirect| %>
+				<tr>
+					<td>
+						<%= redirect.domain %>
+					</td>
+					<td>
+						<%= redirect.url %>
+					</td>
+					<td>
+						<%= button_to "Delete", redirect_path(redirect), method: :delete, data: { confirm: "Are you sure?" } , class: "btn btn-danger" %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

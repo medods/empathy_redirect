@@ -8,6 +8,10 @@ class RedirectsController < ApplicationController
 		@redirect = Redirect.new
 	end
 
+	def show
+		@redirect = Redirect.find(params[:id])
+	end
+
 	def create
 		puts redirects_params
 		@redirect = Redirect.new(redirects_params)
