@@ -1,7 +1,7 @@
 class Redirect < ApplicationRecord
 	
-	CONFIGS_PATH = "nginx/configs/"
-	TEMPLATE_PATH = "nginx/template.conf"
+	CONFIGS_PATH = "#{Rails.root}/nginx/configs/"
+	TEMPLATE_PATH = "#{Rails.root}/nginx/template.conf"
 
 	after_create :create_nginx_config_file
 	after_destroy :delete_nginx_config_file
