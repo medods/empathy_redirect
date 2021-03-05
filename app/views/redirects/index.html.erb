@@ -1,21 +1,26 @@
 
 <h1>Redirects</h1>
 
-<table border="1" width="50%">
+<table class='table'>
 	<thead>
 		<td>Domain</td>
 		<td>Url</td>
+		<td></td>
 	</thead>
 	<tbody>
-		<% @redirects.each do |r| %>
+		<% @redirects.each do |redirect| %>
 			<tr>
 				<td>
-					<%= r.domain %>
+					<%= redirect.domain %>
 				</td>
 				<td>
-					<%= r.url %>
+					<%= redirect.url %>
+				</td>
+				<td>
+					<%= link_to "Delete", redirect_path(redirect), method: :delete, data: { confirm: "Are you sure?" } %>
 				</td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
+<%= link_to "New Redirect", new_redirect_path %>
