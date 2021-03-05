@@ -6,7 +6,6 @@ class Redirect < ApplicationRecord
 	before_create :create_nginx_config_file
 
 	def create_nginx_config_file
-
 		template_file = File.open(TEMPLATE_PATH).read
 		config_file = File.new(formated_config_file_name,"w")
 		template_file.each_line do |line|
@@ -15,11 +14,14 @@ class Redirect < ApplicationRecord
   			config_file.puts(line)
 		end
 		config_file.close
+		restart_nginx
 	end
 
 	def formated_config_file_name
 		CONFIGS_PATH + self.domain.downcase.gsub(/\./,'_') + '.conf'
 	end
 
-
+	def restart_nginx
+		`echo S0lo1024 | sudo -S cat /etc/sudoers > /dev/null && sudo systemctl restart nginx`
+	end
 end
