@@ -1,7 +1,8 @@
 class RedirectsController < ApplicationController
 
     def index
-  	    @redirects = Redirect.all
+  	    # @redirects = Redirect.all
+  	    @redirects = Redirect.paginate :page => params[:page], per_page:10
     end
 
 	def new
