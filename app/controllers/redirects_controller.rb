@@ -4,7 +4,7 @@ class RedirectsController < ApplicationController
 
     def index
   	    # @redirects = Redirect.all
-  	    @redirects = Redirect.paginate :page => params[:page], per_page:20
+  	    @redirects = Redirect.paginate(:page => params[:page], per_page:20).order('id DESC')
     end
 
 	def new
