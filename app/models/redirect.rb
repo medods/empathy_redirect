@@ -15,9 +15,11 @@ class Redirect < ApplicationRecord
 	def create_nginx_config_file
 		template_file = File.open(TEMPLATE_PATH).read
 		config_file = File.new(self.path,"w")
+		sl_domain = self.domain.split('.').last(2).join('.')
 		template_file.each_line do |line|
   			line.gsub!(/\%SERVER_NAME\%/, self.domain)
   			line.gsub!(/\%URL\%/, self.url)
+  			line.gsub!(/\%DOMAIN\%/, sl_domain)
   			config_file.puts(line)
 		end
 		config_file.close
